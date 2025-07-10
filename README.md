@@ -125,10 +125,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-```
+---
+
 ## 🚀 Deployment
 
 ### ✅ 1. Frontend (Vercel)
+
 - **Deploy folder**: `client/`  
 - **Root Directory**: `client`  
 - **Build Command**: `npm run build`  
@@ -138,6 +140,7 @@ Tambahkan environment variable:
 
 ```bash
 REACT_APP_API_URL=https://your-backend.replit.dev
+
 
 ### ✅ 2. Backend (Replit)
 - Upload file `index.js`, `package.json`, dan `.env` (jika diperlukan)  
