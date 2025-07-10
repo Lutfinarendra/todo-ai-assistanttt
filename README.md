@@ -107,10 +107,7 @@ npm start
 ```
 ## 🔐 Firebase Authentication Setup
 Tambahkan file firebase.js di dalam client/src/:
-
-js
-Copy
-Edit
+```bash
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
@@ -137,6 +134,7 @@ export const auth = getAuth(app);
 - Build Command: npm run build
 - Output Directory: build
 Tambahkan environment variable:
+```bash
 REACT_APP_API_URL=https://your-backend.replit.dev
 
 2. ✅ Backend (Replit)
