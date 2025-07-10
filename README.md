@@ -106,8 +106,10 @@ npm start
 
 ```
 ## 🔐 Firebase Authentication Setup
-Tambahkan file firebase.js di dalam client/src/:
-```bash
+
+Tambahkan file `firebase.js` di dalam `client/src/`:
+
+```js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
@@ -122,25 +124,27 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-```---
-✨ Deployment
-1. ✅ Frontend (Vercel)
-- Deploy folder: client/
-- Root Directory: client
-- Build Command: npm run build
-- Output Directory: build
-Tambahkan environment variable:
-```bash
 
-REACT_APP_API_URL=https://your-backend.replit.dev
 ```
+## 🚀 Deployment
 
-2. ✅ Backend (Replit)
-- Upload file index.js, package.json, dan file .env jika perlu.
-- Tambahkan file .replit:
+### ✅ 1. Frontend (Vercel)
+- **Deploy folder**: `client/`  
+- **Root Directory**: `client`  
+- **Build Command**: `npm run build`  
+- **Output Directory**: `build`  
+
+Tambahkan environment variable:
 
 ```bash
- [deployment]
+REACT_APP_API_URL=https://your-backend.replit.dev
+
+### ✅ 2. Backend (Replit)
+- Upload file `index.js`, `package.json`, dan `.env` (jika diperlukan)  
+- Tambahkan file `.replit`:
+
+```toml
+[deployment]
 run = ["npm", "start"]
 deploymentTarget = "autoscale"
 ignorePorts = false
@@ -149,21 +153,24 @@ ignorePorts = false
 localPort = 3000
 externalPort = 80
 
-### 🧠 Mode AI vs Mock
+## 🤖 Mode AI vs Mock
 
-| Mode        | Deskripsi                                     |
-| ----------- | --------------------------------------------- |
-| Development | Bisa menggunakan OpenAI API Key               |
-| Production  | Otomatis menggunakan mock AI (acak & efisien) |
+| Mode        | Deskripsi                                    |
+| ----------- | -------------------------------------------- |
+| Development | Bisa menggunakan OpenAI API Key              |
+| Production  | Otomatis menggunakan mock AI (acak & efisien)|
+
+> Mode mock digunakan secara default agar bebas biaya namun tetap memberikan hasil prioritas yang bermakna.
 
 ---
 
 ## 📄 Lisensi
 
-MIT License – Bebas digunakan, dimodifikasi, dan disebarluaskan.
+**MIT License** — Bebas digunakan, dimodifikasi, dan didistribusikan ulang.
 
 ---
 
 ## 📬 Kontak
 
-Made with  by [@Lutfinarendra](https://github.com/Lutfinarendra)
+Dibuat oleh **[@Lutfinarendra](https://github.com/Lutfinarendra)**  
+Untuk Capstone Project IBM x Rakamin dan pengembangan web pribadi  
