@@ -126,7 +126,6 @@ export const auth = getAuth(app);
 
 
 ```
-## 🔐 Firebase Authentication Setup
 ✨ Deployment
 1. ✅ Frontend (Vercel)
 - Deploy folder: client/
@@ -134,12 +133,16 @@ export const auth = getAuth(app);
 - Build Command: npm run build
 - Output Directory: build
 Tambahkan environment variable:
-```bash
+... bash
 REACT_APP_API_URL=https://your-backend.replit.dev
+```
 
+
+```
 2. ✅ Backend (Replit)
 - Upload file index.js, package.json, dan file .env jika perlu.
 - Tambahkan file .replit:
+...bash
  [deployment]
 run = ["npm", "start"]
 deploymentTarget = "autoscale"
@@ -148,6 +151,8 @@ ignorePorts = false
 [[ports]]
 localPort = 3000
 externalPort = 80
+...
+
 
 ## 🧠 Mode AI vs Mock
 | Mode        | Deskripsi                                     |
