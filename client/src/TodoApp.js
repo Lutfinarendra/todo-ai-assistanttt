@@ -21,8 +21,8 @@ function TodoApp() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = text => {
-    setTodos(prev => [...prev, text]);
+  const addTodo = todo => {
+    setTodos(prev => [...prev, todo]);
     setSuggestions(null);
     toast.info('📝 Tugas ditambahkan');
   };
@@ -31,14 +31,27 @@ function TodoApp() {
     const task = todos[index];
     setTodos(prev => prev.filter((_, i) => i !== index));
     setSuggestions(null);
-    toast.warn(`🗑️ Tugas dihapus: ${task}`);
+    toast.warn(`🗑️ Tugas dihapus: ${task.text}`);
+  };
+
+  const editTodo = (index, newText) => {
+    setTodos(prev =>
+      prev.map((todo, i) => (i === index ? { ...todo, text: newText } : todo))
+    );
+    toast.success('✏️ Tugas berhasil diedit');
   };
 
   const handleSuggest = async () => {
     if (todos.length === 0) return toast.error('⚠️ Daftar tugas kosong');
     setLoadingAI(true);
     try {
-      const result = await suggestPriority(todos);
+      const result = await suggestPriority(todos.map(t => t.text));
+      // Gabungkan hasil prioritas ke task
+      const updated = todos.map((t, i) => ({
+        ...t,
+        priority: result[i]?.priority || 5
+      }));
+      setTodos(updated);
       setSuggestions(result);
       toast.success('✅ Prioritas berhasil didapat!');
     } catch (err) {
@@ -58,23 +71,20 @@ function TodoApp() {
       <div className="topbar">
         <h1>🧠 AI‑Assisted To‑Do List</h1>
         <div className="auth-info">
-         <span>👋 Welcome, {user?.displayName || user?.email}</span>
+          <span>👋 Welcome, {user?.displayName || user?.email}</span>
           <button onClick={handleLogout} className="logout-btn">Logout</button>
         </div>
       </div>
 
       <TodoInput onAdd={addTodo} />
-      <TodoList items={todos} onDelete={deleteTodo} />
+      <TodoList items={todos} onDelete={deleteTodo} onEdit={editTodo} />
 
       <div className="ai-section">
         <button onClick={handleSuggest} disabled={loadingAI || todos.length === 0}>
           {loadingAI ? 'Menganalisis…' : 'Dapatkan Prioritas AI'}
         </button>
-
         {!suggestions && todos.length > 0 && !loadingAI && (
-          <p className="hint">
-            Klik tombol di atas untuk melihat rekomendasi dari AI.
-          </p>
+          <p className="hint">Klik tombol di atas untuk melihat rekomendasi dari AI.</p>
         )}
       </div>
 

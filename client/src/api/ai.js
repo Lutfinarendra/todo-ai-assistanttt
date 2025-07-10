@@ -1,5 +1,5 @@
 export async function suggestPriority(tasks) {
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/suggest-priority`, {
+  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/suggest-priority`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
