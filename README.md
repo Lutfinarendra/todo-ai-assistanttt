@@ -1,37 +1,60 @@
 # 🧠 AI‑Assisted To‑Do List
 
-Aplikasi web berbasis **React** dan **Express** yang membantu pengguna menyusun **prioritas tugas** secara otomatis menggunakan bantuan **AI GPT** (OpenAI), atau dapat dijalankan gratis dalam mode mock/simulasi.
+Aplikasi web modern yang membantu pengguna menyusun **prioritas tugas** secara otomatis menggunakan bantuan **AI (mock)**, serta menyediakan fitur **login**, **edit**, **deadline**, dan **UI responsif**.
 
 ---
 
-## 🚀 Fitur
+## 🚀 Fitur Utama
 
-- ✅ Tambah dan hapus tugas
-- 🧠 Rekomendasi prioritas otomatis dari AI (atau mock tanpa biaya)
-- 💾 Penyimpanan lokal di browser (`localStorage`)
-- 🎨 Antarmuka bersih dan responsif
-- 🛠️ Backend mock mode untuk testing gratis (tanpa API Key)
+- ✅ Tambah & hapus tugas
+- 📝 Edit tugas secara langsung
+- 📅 Tambah deadline (tenggat waktu)
+- 💾 Simpan data otomatis di `localStorage`
+- 🔐 Login & register dengan **Firebase Authentication**
+- 🧠 Rekomendasi prioritas tugas oleh AI (mock di production)
+- 🔁 Mode mock (tanpa API key) siap digunakan di Replit
+- 🌈 UI minimalis, bersih, dan mobile-friendly
 
 ---
 
 ## 🛠️ Teknologi yang Digunakan
 
-| Layer      | Teknologi                  |
-|------------|----------------------------|
-| Frontend   | React, HTML, CSS           |
-| Backend    | Node.js, Express, dotenv   |
-| AI Engine  | OpenAI GPT-3.5 (opsional)  |
-| Database   | localStorage (browser)     |
+| Layer       | Teknologi                               |
+|-------------|-----------------------------------------|
+| Frontend    | React, React Router DOM, CSS            |
+| Backend     | Node.js, Express                        |
+| AI/Mock     | Prioritas AI (Mock), OpenAI (opsional)  |
+| Auth        | Firebase Authentication                 |
+| Storage     | `localStorage` (Browser)                |
+| Deployment  | Vercel (Frontend), Replit (Backend)     |
 
 ---
 
-## 💻 Cara Menjalankan
+## 🌐 Demo Online
 
-### 1️⃣ Clone Repositori
+- **Frontend (Vercel)**  
+  🔗 [todo-ai-assistanttt.vercel.app](https://todo-ai-assistanttt.vercel.app)
 
+- **Backend (Replit / Mock)**  
+  🔗 [Replit Mock Server](https://07716fe9-a80c-4b00-88db-9feb1aaa2040-00-2fcnl99pu1tk9.pike.replit.dev)
+
+---
+
+## 🧪 Contoh Output Prioritas (Mock)
+
+```json
+[
+  { "task": "Tidur", "priority": 1 },
+  { "task": "Belajar", "priority": 2 },
+  { "task": "Mandi", "priority": 3 }
+]
+```
+### 💻 Cara Menjalankan Secara Lokal
+
+### 1. Clone Project
 ```bash
-git clone https://github.com/Lutfinarendra/todo-ai-assistant.git
-cd todo-ai-assistant
+git clone https://github.com/Lutfinarendra/todo-ai-assistanttt.git
+cd todo-ai-assistanttt
 ```
 
 ### 📦 2. Install Dependency
@@ -49,6 +72,7 @@ Buat file `.env` di folder `server/`:
 ```
 OPENAI_API_KEY=REMOVED_API_KEYxxxxx
 PORT=4000
+NODE_ENV=development
 ```
 
 > Jika tidak mengisi API key, backend akan otomatis gunakan mode mock.
@@ -67,28 +91,71 @@ npm start
 **Terminal 2 (frontend):**
 
 ```bash
-cd ..
+cd client
 npm start
 ```
 
-🔗 Buka: [http://localhost:3000](http://localhost:3000)
-
----
-
 ## 📸 Screenshot (Opsional)
 
-*Tambahkan tampilan UI project Anda di sini:*
+*Tambahkan tampilan UI project :*
 
-![Tampilan UI](image.png)))
-
-## 🧪 Contoh Respons Mock
-
-```json
-[
-  { "task": "Belanja react", "priority": 2 },
-  { "task": "koding mantap", "priority": 1 }
-]
+![Tampilan Login](image.png))))
+![Tampilan Register](image-1.png)
+![Tampilan UI](image-2.png)
 ```
+
+```
+## 🔐 Firebase Authentication Setup
+Tambahkan file firebase.js di dalam client/src/:
+
+js
+Copy
+Edit
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+```
+
+
+```
+## 🔐 Firebase Authentication Setup
+✨ Deployment
+1. ✅ Frontend (Vercel)
+- Deploy folder: client/
+- Root Directory: client
+- Build Command: npm run build
+- Output Directory: build
+Tambahkan environment variable:
+REACT_APP_API_URL=https://your-backend.replit.dev
+
+2. ✅ Backend (Replit)
+- Upload file index.js, package.json, dan file .env jika perlu.
+- Tambahkan file .replit:
+ [deployment]
+run = ["npm", "start"]
+deploymentTarget = "autoscale"
+ignorePorts = false
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+## 🧠 Mode AI vs Mock
+| Mode        | Deskripsi                                     |
+| ----------- | --------------------------------------------- |
+| Development | Bisa menggunakan OpenAI API Key               |
+| Production  | Otomatis menggunakan mock AI (acak & efisien) |
 
 ---
 
@@ -100,4 +167,4 @@ MIT License – Bebas digunakan, dimodifikasi, dan disebarluaskan.
 
 ## 📬 Kontak
 
-Made with ❤️ by [@Lutfinarendra](https://github.com/Lutfinarendra)
+Made with  by [@Lutfinarendra](https://github.com/Lutfinarendra)

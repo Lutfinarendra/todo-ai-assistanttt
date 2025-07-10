@@ -1,41 +1,54 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from 'cors'
-// import { OpenAI } from 'openai' // ❌ Nonaktifkan jika tidak digunakan
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+const app = express();
 
-// Logging mode
-const useMock = process.env.NODE_ENV === 'production' || !process.env.OPENAI_API_KEY
-console.log('🌍 Mode:', process.env.NODE_ENV)
-console.log('🔑 API Key Available:', !!process.env.OPENAI_API_KEY)
-console.log(`🧪 AI aktif: ${!useMock}`)
+// ✅ CORS: izinkan hanya dari frontend kamu
+app.use(cors({
+  origin: "https://todo-ai-assistanttt.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
 
-// API endpoint
-app.post('/api/suggest-priority', async (req, res) => {
-  const { tasks } = req.body
+app.use(express.json());
 
-  if (useMock) {
-    const mock = tasks.map((t, i) => ({
-      task: t,
-      priority: tasks.length - i
-    }))
-    console.log('🔧 MOCK response:', mock)
-    return res.json(mock)
+// ✅ Tangani preflight
+app.options("*", (_, res) => res.sendStatus(200));
+
+// ✅ Mode: pakai mock jika tidak ada API key
+const useMock = process.env.NODE_ENV === 'production' || !process.env.OPENAI_API_KEY;
+console.log('🌍 Mode:', process.env.NODE_ENV);
+console.log('🔑 API Key Available:', !!process.env.OPENAI_API_KEY);
+console.log(`🧪 AI aktif: ${!useMock}`);
+
+// ✅ Endpoint utama (acak urutan prioritas)
+app.post("/api/suggest-priority", (req, res) => {
+  const { tasks } = req.body;
+  if (!Array.isArray(tasks)) {
+    return res.status(400).json({ error: "Tasks harus berupa array." });
   }
 
-  // Versi AI (nonaktif untuk sekarang)
-  console.log('🧠 AI dipanggil (dev mode)')
-  res.status(501).json({ error: 'Fitur AI tidak tersedia di versi ini.' })
-})
+  const shuffled = [...tasks]
+    .sort(() => Math.random() - 0.5)
+    .map((task, index) => ({
+      task,
+      priority: index + 1,
+    }));
 
-// Start server
-const PORT = process.env.PORT || 4000
+  res.json(shuffled);
+});
+
+// ✅ Root endpoint tes
+app.get("/", (_, res) => {
+  res.send("✅ Backend aktif dari Replit!");
+});
+
+// ✅ Jalankan server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  const mode = useMock ? 'MOCK' : 'AI aktif'
-  console.log(`✅ Server berjalan di http://localhost:${PORT} (${mode})`)
-})
+  const mode = useMock ? "MOCK" : "AI aktif";
+  console.log(`🚀 Server berjalan di http://localhost:${PORT} (${mode})`);
+});
