@@ -125,12 +125,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
----
+```
 
 ## 🚀 Deployment
 
 ### ✅ 1. Frontend (Vercel)
-
 - **Deploy folder**: `client/`  
 - **Root Directory**: `client`  
 - **Build Command**: `npm run build`  
@@ -139,8 +138,10 @@ export const auth = getAuth(app);
 Tambahkan environment variable:
 
 ```bash
-REACT_APP_API_URL=https://your-backend.replit.dev
+export REACT_APP_API_URL=https://your-backend.replit.dev
 
+
+---
 
 ### ✅ 2. Backend (Replit)
 - Upload file `index.js`, `package.json`, dan `.env` (jika diperlukan)  
@@ -156,6 +157,9 @@ ignorePorts = false
 localPort = 3000
 externalPort = 80
 
+
+...
+
 ## 🤖 Mode AI vs Mock
 
 | Mode        | Deskripsi                                    |
@@ -169,7 +173,7 @@ externalPort = 80
 
 ## 📄 Lisensi
 
-**MIT License** — Bebas digunakan, dimodifikasi, dan didistribusikan ulang.
+MIT License — Bebas digunakan, dimodifikasi, dan didistribusikan ulang.
 
 ---
 
