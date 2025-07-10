@@ -140,32 +140,34 @@ Tambahkan environment variable:
 ```bash
 export REACT_APP_API_URL=https://your-backend.replit.dev
 
+### ✅ 2. Backend (Replit)
+
+1. **Upload file**:  
+   - `index.js`
+   - `package.json`
+   - `.env` (jika diperlukan)
+
+2. **Tambahkan file `.replit`** dengan isi berikut:
+
+   ```bash
+   [deployment]
+   run = ["npm", "start"]
+   deploymentTarget = "autoscale"
+   ignorePorts = false
+
+   [[ports]]
+   localPort = 3000
+   externalPort = 80
+   ```
 
 ---
 
-### ✅ 2. Backend (Replit)
-- Upload file `index.js`, `package.json`, dan `.env` (jika diperlukan)  
-- Tambahkan file `.replit`:
-
-```toml
-[deployment]
-run = ["npm", "start"]
-deploymentTarget = "autoscale"
-ignorePorts = false
-
-[[ports]]
-localPort = 3000
-externalPort = 80
-
-
-...
-
 ## 🤖 Mode AI vs Mock
 
-| Mode        | Deskripsi                                    |
-| ----------- | -------------------------------------------- |
-| Development | Bisa menggunakan OpenAI API Key              |
-| Production  | Otomatis menggunakan mock AI (acak & efisien)|
+| Mode        | Deskripsi                                      |
+|-------------|-----------------------------------------------|
+| Development | Menggunakan OpenAI API Key (jika tersedia)     |
+| Production  | Otomatis menggunakan mock AI (acak & efisien)  |
 
 > Mode mock digunakan secara default agar bebas biaya namun tetap memberikan hasil prioritas yang bermakna.
 
@@ -173,11 +175,10 @@ externalPort = 80
 
 ## 📄 Lisensi
 
-MIT License — Bebas digunakan, dimodifikasi, dan didistribusikan ulang.
+MIT License – Bebas digunakan, dimodifikasi, dan didistribusikan.
 
 ---
 
 ## 📬 Kontak
 
-Dibuat oleh **[@Lutfinarendra](https://github.com/Lutfinarendra)**  
-Untuk Capstone Project IBM x Rakamin dan pengembangan web pribadi  
+Dibuat oleh **[@Lutfinarendra](https://github.com/Lutfinarendra)** 
