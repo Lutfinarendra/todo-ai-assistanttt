@@ -134,16 +134,15 @@ export const auth = getAuth(app);
 - Output Directory: build
 Tambahkan environment variable:
 
+```bash
 REACT_APP_API_URL=https://your-backend.replit.dev
 ```
-
-
-```
+...
 2. ✅ Backend (Replit)
 - Upload file index.js, package.json, dan file .env jika perlu.
 - Tambahkan file .replit:
 
-
+```bash
  [deployment]
 run = ["npm", "start"]
 deploymentTarget = "autoscale"
