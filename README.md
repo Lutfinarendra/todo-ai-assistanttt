@@ -95,16 +95,6 @@ cd client
 npm start
 ```
 
-## 📸 Screenshot (Opsional)
-
-*Tambahkan tampilan UI project :*
-
-![Tampilan Login](image.png))))
-![Tampilan Register](image-1.png)
-![Tampilan UI](image-2.png)
-```
-
-```
 ## 🔐 Firebase Authentication Setup
 
 Tambahkan file `firebase.js` di dalam `client/src/`:
