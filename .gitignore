@@ -23,3 +23,13 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+# Build & deps
+client/build/
+client/node_modules/
+server/node_modules/
+
+# Temp files
+README.old.md
+replacements.txt
+image-1.png
+image-2.png
