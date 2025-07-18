@@ -1,4 +1,3 @@
-// src/TodoApp.js
 import React, { useState, useEffect } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
@@ -46,7 +45,6 @@ function TodoApp() {
     setLoadingAI(true);
     try {
       const result = await suggestPriority(todos.map(t => t.text));
-      // Gabungkan hasil prioritas ke task
       const updated = todos.map((t, i) => ({
         ...t,
         priority: result[i]?.priority || 5

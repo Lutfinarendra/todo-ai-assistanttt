@@ -1,4 +1,3 @@
-// src/auth/Register.js
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -15,7 +14,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await register(email, password, fullName); // simpan nama display
+      await register(email, password, fullName); 
       toast.success('🎉 Registrasi berhasil!');
       navigate('/');
     } catch (err) {

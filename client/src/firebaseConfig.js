@@ -1,4 +1,3 @@
-// src/firebaseConfig.js
 export const firebaseConfig = {
   apiKey: "AIzaSyB5F72sfwKIv107a4iY4lRMkTsuIL2j11T",
   authDomain: "todo-ai-assistant-27572.firebaseapp.com",
